@@ -1,0 +1,14 @@
+{ pkgs, lib, ... } : {
+	programs.kitty = {
+    shellIntegration.enableZshIntegration = true;
+		font.package = lib.mkForce pkgs.cascadia-code;
+    font.name = lib.mkForce "Cascadia Code";
+    font.size = lib.mkForce 12;
+    enable = true;
+    settings = {
+      "confirm_os_window_close" = lib.mkForce "0";
+      "background_opacity" = lib.mkForce "0.9";
+      "background_blur" = lib.mkForce "10";
+    };
+  };
+}
