@@ -1,12 +1,14 @@
 { ... } : {
-  imports = [ ./hardware.nix ./modules/network.nix ./modules/users.nix ./modules/display.nix ];
+	imports = [ ./hardware.nix ./modules/network.nix ./modules/users.nix ./modules/display.nix ./modules/audio.nix ];
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 	nixpkgs.config.allowUnfree = true;
 
-  powerManagement.cpuFreqGovernor = "performance";
-  time.timeZone = "America/Sao_Paulo";
+	powerManagement.cpuFreqGovernor = "performance";
+	time.timeZone = "America/Sao_Paulo";
 	console.keyMap = "br-abnt2";
+
+	programs.nh.enable = true;
 
 	i18n.defaultLocale = "en_US.UTF-8";
 	i18n.extraLocaleSettings = {
@@ -21,9 +23,9 @@
 		LC_TIME = "pt_BR.UTF-8";
 	};
 
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.enable = true;
+	boot.loader.efi.canTouchEfiVariables = true;
+	boot.loader.systemd-boot.enable = true;
 
-  system.stateVersion = "24.11";
+	system.stateVersion = "24.11";
 }
 
