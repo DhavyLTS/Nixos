@@ -1,6 +1,6 @@
 { pkgs, ... } : {
 	systemd.services."autovt@tty1".enable = false;
-  systemd.services."getty@tty1".enable = false;
+	systemd.services."getty@tty1".enable = false;
 
 	services.displayManager.autoLogin.user = "tanikaze";
 	services.displayManager.autoLogin.enable = true;
@@ -11,7 +11,7 @@
 	services.xserver.xkb.layout = "br";
 	services.xserver.enable = true;
 
-  hardware.graphics.enable = true;
+	hardware.graphics.enable = true;
 
 	xdg.portal.enable = true;
 	xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
@@ -25,10 +25,10 @@
 	environment.systemPackages = with pkgs; [
 		wl-clipboard
 		hyprcursor
-		hyprpaper
 		hyprland
 		hyprshot
 		kitty
+		swww
 		wofi
 	];
 }
