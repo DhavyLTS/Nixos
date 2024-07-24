@@ -13,6 +13,7 @@
 		vesktop
 		neovim
 		yazi
+		gcc
 		git
 	];
 
