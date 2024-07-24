@@ -1,4 +1,4 @@
-{ ... } : {
+{ pkgs, ... } : {
 	imports = [ ./hardware.nix ./modules/network.nix ./modules/users.nix ./modules/display.nix ./modules/audio.nix ];
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -8,7 +8,12 @@
 	time.timeZone = "America/Sao_Paulo";
 	console.keyMap = "br-abnt2";
 
+	programs.steam.enable = true;
 	programs.nh.enable = true;
+
+	environment.systemPackages = with pkgs; [
+		rustup gcc git
+	];
 
 	i18n.defaultLocale = "en_US.UTF-8";
 	i18n.extraLocaleSettings = {
