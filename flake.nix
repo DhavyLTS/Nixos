@@ -2,7 +2,7 @@
 	description = "NixOS Configuration Flake";
 	inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 	inputs.homeManager.url = "github:nix-community/home-manager/master";
-  inputs.homeManager.inputs.nixpkgs.follows = "nixpkgs";
+	inputs.homeManager.inputs.nixpkgs.follows = "nixpkgs";
 	inputs.xremap.url = "github:xremap/nix-flake";
 	inputs.stylix.url = "github:danth/stylix";
 
