@@ -1,4 +1,4 @@
-{ config, lib, ... } : {
+{ config, lib, pkgs, ... } : {
 	wayland.windowManager.hyprland = {
 		enable = true;
 		settings = {
@@ -23,10 +23,10 @@
 				rounding = 6;
 			};
 
-			#exec-once = [
-			#	"${pkgs.swww}/bin/swww-daemon"
-			#	"${pkgs.swww}/bin/swww ./wallpaper.png"
-			#];
+			exec-once = [
+				"${pkgs.swww}/bin/swww-daemon"
+				"${pkgs.swww}/bin/swww ~/.config/hypr/wallpaper.png"
+			];
 
 			monitor = "HDMI-A-1, 1920x1080, 0x0, 1";
 
@@ -37,8 +37,8 @@
 			bind = [
 				"     , PRINT, exec, hyprshot -m region --clipboard-only"
 				"$mod1, R, exec, wofi --show drun"
-				"$mod1, RETURN, exec, kitty"
 				"$mod1, SPACE, togglefloating"
+				"$mod1, RETURN, exec, kitty"
 				"$mod1, F, fullscreen"
 				"$mod2, X, killactive"
 
