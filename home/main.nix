@@ -1,5 +1,5 @@
 { pkgs, inputs, ... } : {
-	imports = [ ./modules/shell.nix ./modules/kitty.nix ./modules/style.nix ./modules/hyprland.nix ./modules/xremap.nix ]; 
+	imports = [ ./modules/shell.nix ./modules/kitty.nix ./modules/style.nix ./modules/xremap.nix ./modules/i3wm.nix ]; 
 	nixpkgs.config.allowUnfree = true;
 
 	home.homeDirectory = "/home/tanikaze";
