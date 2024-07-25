@@ -6,13 +6,11 @@
 	home.stateVersion = "24.11";
 	home.username = "tanikaze";
 
-	home.file.".config/nvim".source = inputs.nVim;
+	home.file.".config/nvim".source = inputs.nvim;
 
 	home.packages = with pkgs; [
-		lazygit
-		vesktop
-		neovim
-		yazi
+		lazygit vesktop neovim yazi 
+		lua-language-server rust-analyzer
 	];
 
 	programs = {
