@@ -1,4 +1,4 @@
-{ pkgs, ... } :
+{ config, pkgs, lib, ... } :
 let modifier = "Mod4"; in {
 
 	programs.rofi.package = pkgs.rofi;
@@ -6,12 +6,96 @@ let modifier = "Mod4"; in {
 
 	programs.feh.enable = true;
 
+	services.polybar.script = "${pkgs.polybar}/bin/polybar &";
+	services.polybar.package = pkgs.polybar;
+	services.polybar.enable = true;
+	services.polybar.config = {
+
+		"colors" = with config.lib.stylix.colors; lib.mkForce {
+			background-alt = "#${base01}";
+			foreground-alt = "#${base04}";
+			background = "#${base00}";
+			foreground = "#${base05}";
+			secondary = "#${base0B}";
+			disabled = "#${base03}";
+			primary = "#${base0D}";
+			alert = "#${base08}";
+		};
+
+		"bar/default" = {
+			separator-foreground = "\${colors.disabled}";
+			background = "\${colors.background}";
+			foreground = "\${colors.foreground}";
+
+			modules-left = "date xworkspaces";
+			modules-center = "xwindow";
+			modules-right = "tray";
+
+			cursor-scroll = "ns-resize";
+			cursor-click = "pointer";
+
+			font-0 = "caskaydiacove nerd font;1";
+			separator = "/";
+
+			border-size = "0pt";
+			module-margin = "1";
+			padding-right = "1";
+			padding-left = "1";
+			line-size = "3pt";
+			bottom = "true";
+			height = "20pt";
+			width = "100%";
+			radius = "0";
+		};
+
+		"module/xworkspaces" = {
+			type = "internal/xworkspaces";
+			label-active = "%name%";
+			label-active-background = "\${colors.background-alt}";
+			label-active-foreground = "\${colors.foreground-alt}";
+			label-active-underline = "\${colors.primary}";
+			label-active-padding = "1";
+
+			label-occupied = "%name%";
+			label-occupied-padding = "1";
+
+			label-urgent = "%name%";
+			label-urgent-background = "\${colors.alert}";
+			label-urgent-padding = "1";
+
+			label-empty = "%name%";
+			label-empty-foreground = "\${colors.disabled}";
+			label-empty-padding = "1";
+		};
+
+		"module/tray" = {
+			type = "internal/tray";
+			format-margin = "0px";
+			tray-spacing = "8px";
+		};
+	
+		"module/xwindow" = {
+			type = "internal/xwindow";
+			label = "%title:0:60:...%";
+		};
+
+		"module/date" = {
+			type = "internal/date";
+			interval = "1";
+			date = "%H:%M";
+			date-alt = "%Y-%m-%d %H:%M:%S";
+			label = "%date%";
+			label-foreground = "\${colors.primary}";
+		};
+	};
+
 	xsession.windowManager.i3.package = pkgs.i3-gaps;
 	xsession.windowManager.i3.enable = true;
 	xsession.windowManager.i3.config = {
 		modifier = "${modifier}";
 		gaps.inner = 10;
 		gaps.outer = 6;
+		bars = [];
 	};
 
 	services.picom.enable = true;
@@ -21,8 +105,7 @@ let modifier = "Mod4"; in {
     activeOpacity = 1.0;
     inactiveOpacity = 1.0;
 		settings.vsync = true;
-		settings.fade-delta = 3;
-    settings.corner-radius = 8;
+		settings.fade-delta = 2;
   };
 
 	xsession.windowManager.i3.config.keybindings = {
@@ -67,8 +150,13 @@ let modifier = "Mod4"; in {
 	};
 
 	xsession.windowManager.i3.config.startup = [
+	  {
+			command = "xrandr --output HDMI-A-0 --mode 1920x1080";
+			notification = false;
+			always = true;
+		}
 		{
-			command = "${pkgs.feh}/bin/feh --bg-fill ~/.config/wallpaper.png";
+			command = "sleep 2 && ${pkgs.feh}/bin/feh --bg-fill ~/.config/wallpaper.png";
 			notification = false;
 			always = true;
 		}
@@ -77,10 +165,15 @@ let modifier = "Mod4"; in {
 			notification = false;
 			always = true;
 		}
+		{
+			command = "${pkgs.polybar}/bin/polybar";
+			notification = false;
+			always = true;
+		}
 	];
 
 	xsession.windowManager.i3.extraConfig = ''
-default_floating_border pixel 0
-default_border pixel 0
-'';
+		default_floating_border pixel 0
+		default_border pixel 0
+		'';
 }
