@@ -11,8 +11,13 @@
 	programs.steam.enable = true;
 	programs.nh.enable = true;
 
+  programs.nix-ld.libraries = with pkgs; [];
+  programs.nix-ld.enable = true;
+
 	environment.systemPackages = with pkgs; [
-		rustup gcc git
+		gcc git lutris wine wine64 vulkan-tools
+		winetricks vulkan-loader vulkan-headers
+		cargo rustc clippy rustup
 	];
 
 	i18n.defaultLocale = "en_US.UTF-8";
