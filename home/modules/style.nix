@@ -1,7 +1,7 @@
 { inputs, pkgs, ... } : {
 	imports = [ inputs.stylix.homeManagerModules.stylix ];
 
-	home.file.".config/hypr/wallpaper.png" = {
+	home.file.".config/wallpaper.png" = {
 		source = ../wallpaper.png;
 		recursive = true;
 	};
