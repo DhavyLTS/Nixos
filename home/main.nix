@@ -6,10 +6,11 @@
 	home.stateVersion = "24.11";
 	home.username = "tanikaze";
 
-	home.file.".config/nvim".source = inputs.nvim;
+	home.file.".config/nvim/init.lua".source = "${inputs.nvim}/init.lua";
+	home.file.".config/nvim/lua".source = "${inputs.nvim}/lua";
 
 	home.packages = with pkgs; [
-		lazygit vesktop neovim yazi 
+		lazygit vesktop yazi neovim spotify
 		lua-language-server rust-analyzer
 	];
 
@@ -19,5 +20,4 @@
 		btop.enable = true;
 		yazi.enable = true;
 	};
-
 }
