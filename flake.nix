@@ -1,9 +1,9 @@
 {
 	description = "NixOS Configuration Flake";
 	inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+	inputs.repo.url = "github:dhavylts/nixospackages";
 	inputs.xremap.url = "github:xremap/nix-flake";
 	inputs.stylix.url = "github:danth/stylix";
-
 	inputs.homeManager = {
 		url = "github:nix-community/home-manager/master";
 		inputs.nixpkgs.follows = "nixpkgs";
