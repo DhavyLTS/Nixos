@@ -8,11 +8,12 @@
 	time.timeZone = "America/Sao_Paulo";
 	console.keyMap = "br-abnt2";
 
+	programs.steam.gamescopeSession.enable = true;
+	programs.gamemode.enable = true;
 	programs.steam.enable = true;
+
 	programs.nh.enable = true;
 
-  programs.nix-ld.libraries = with pkgs; [];
-  programs.nix-ld.enable = true;
 
 	environment.systemPackages = with pkgs; [
 		gcc git lutris wine wine64 vulkan-tools
