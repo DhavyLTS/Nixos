@@ -1,8 +1,8 @@
-{ pkgs, lib, ... } : {
+{ pkgs, lib, inputs,... } : {
 	programs.kitty = {
 		shellIntegration.enableZshIntegration = true;
 		font.name = lib.mkForce "CaskaydiaCove Nerd Font";
-		font.package = lib.mkForce (import ../fonts/caskaydiacove.nix {inherit pkgs; });
+		font.package = lib.mkForce inputs.repo.caskaydiacove;
 		font.size = lib.mkForce 12;
 		enable = true;
 		settings = {
