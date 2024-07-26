@@ -109,6 +109,7 @@ let modifier = "Mod4"; in {
   };
 
 	xsession.windowManager.i3.config.keybindings = {
+		"Print" = "exec maim -s | xclip -selection clipboard -t image/png";
 		"${modifier}+r" = "exec ${pkgs.rofi}/bin/rofi -show drun -show-icons";
 		"${modifier}+Return" = "exec ${pkgs.kitty}/bin/kitty";
 
