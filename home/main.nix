@@ -12,7 +12,12 @@
 	home.packages = with pkgs; [
 		lazygit vesktop yazi neovim spotify
 		lua-language-server rust-analyzer
+		path-of-building protonup
 	];
+
+	home.sessionVariables = {
+		STEAM_EXTRA_COMPAT_TOOLS_PATH = "\${HOME}/.steam/root/compatibility.d";
+	};
 
 	programs = {
 		home-manager.enable = true;
