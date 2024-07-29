@@ -4,8 +4,8 @@
   inputs = {
 		homeManager.url = "github:nix-community/home-manager/master";
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-		dpkgs.url = "github:dhavylts/NixosPackages";
 		xremap.url = "github:xremap/nix-flake";
+		dpkgs.url = "github:dhavylts/nixpkgs";
 		nvim.url = "github:dhavylts/neovim";
 		stylix.url = "github:danth/stylix";
 		nvim.flake = false;
@@ -34,17 +34,13 @@
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
 			specialArgs = { inherit vars;  inherit inputs; };
 			inherit system;
-			modules = [
-				./system/default.nix
-			];
+			modules = [ ./system/default.nix ];
     };
 
 		homeConfigurations.default = homeManager.lib.homeManagerConfiguration {
 			extraSpecialArgs = { inherit vars; inherit inputs; };
 			inherit pkgs;
-			modules = [
-				./home/default.nix
-			];
+			modules = [ ./home/default.nix ];
 		};
   };
 }
