@@ -1,28 +1,50 @@
 {
-	description = "NixOS Configuration Flake";
-	inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-	inputs.repo.url = "github:dhavylts/nixospackages";
-	inputs.xremap.url = "github:xremap/nix-flake";
-	inputs.stylix.url = "github:danth/stylix";
-	inputs.homeManager = {
-		url = "github:nix-community/home-manager/master";
-		inputs.nixpkgs.follows = "nixpkgs";
-	};
+  description = "NixOS Configuration Flake";
 
-	inputs.nvim = {
-		url = "github:dhavylts/neovim";
-		flake = false;
-	};
+  inputs = {
+		homeManager.url = "github:nix-community/home-manager/master";
+		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+		dpkgs.url = "github:dhavylts/NixosPackages";
+		xremap.url = "github:xremap/nix-flake";
+		nvim.url = "github:dhavylts/neovim";
+		stylix.url = "github:danth/stylix";
+		nvim.flake = false;
+  };
 
-	outputs = { nixpkgs, homeManager, ... }@inputs : let pkgs = nixpkgs.legacyPackages.${system}; system = "x86_64-linux"; in {
-		nixosConfigurations."tsugumori" = nixpkgs.lib.nixosSystem {
-			modules = [ ./system/main.nix ];
-		};
+  outputs = { self, nixpkgs, homeManager, ... } @inputs :
 
-		homeConfigurations."tanikaze" = homeManager.lib.homeManagerConfiguration {
-			extraSpecialArgs = { inherit inputs; };
-			modules = [ ./home/main.nix ];
+	let
+		vars.colors_scheme = "gruvbox-dark-medium";
+		vars.timezone = "America/Sao_Paulo";
+		vars.state_version = "24.11";
+		vars.hostname = "tsugumori";
+		vars.username = "tanikaze";
+		vars.flavor = "i3wm";
+
+		vars.default_locale = "en_US.UTF-8";
+		vars.console_keymap = "br-abnt2";
+		vars.xkb_variant = "abnt2";
+		vars.xkb_layout = "br";
+
+		pkgs = nixpkgs.legacyPackages.${system};
+		system = "x86_64-linux";
+	in
+
+	{
+    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+			specialArgs = { inherit vars;  inherit inputs; };
+			inherit system;
+			modules = [
+				./system/default.nix
+			];
+    };
+
+		homeConfigurations.default = homeManager.lib.homeManagerConfiguration {
+			extraSpecialArgs = { inherit vars; inherit inputs; };
 			inherit pkgs;
+			modules = [
+				./home/default.nix
+			];
 		};
-	};
+  };
 }
