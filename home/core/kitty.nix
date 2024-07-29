@@ -2,7 +2,7 @@
 	programs.kitty = {
 		shellIntegration.enableZshIntegration = true;
 		font.name = lib.mkForce "CaskaydiaCove Nerd Font";
-		font.package = lib.mkForce inputs.repo.caskaydiacove;
+		font.package = lib.mkForce inputs.dpkgs.caskaydiacove;
 		font.size = lib.mkForce 12;
 		enable = true;
 		settings = {

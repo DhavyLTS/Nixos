@@ -6,8 +6,6 @@
 		enable = true;
 
 		shellAliases = {
-			system = "FLAKE=~/nixos nh os";
-			home = "FLAKE=~/nixos nh home";
 			vim = "${pkgs.neovim}/bin/nvim";
 			vi = "${pkgs.neovim}/bin/nvim";
 			ls = "${pkgs.eza}/bin/eza";
@@ -24,7 +22,7 @@
 	programs.starship.enableZshIntegration = true;
 	programs.starship.enable = true;
 	programs.starship.settings = {
-		format = " $os$directory$git_branch$package$rust$fill$time \n $character";
+		format = " $os$directory$git_branch$package$rust$fill \n $character";
 		add_newline = true;
 
 		character.success_symbol = " [󱞩](bold green)";
@@ -34,8 +32,5 @@
 
 		os.disabled = false;
 		os.symbols.NixOS = " ";
-
-		time.disabled = false;
-		time.format = "[  ](bold yellow)[$time](bold white)";
 	};
 }

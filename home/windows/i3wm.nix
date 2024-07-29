@@ -73,7 +73,7 @@ let modifier = "Mod4"; in {
 			format-margin = "0px";
 			tray-spacing = "8px";
 		};
-	
+
 		"module/xwindow" = {
 			type = "internal/xwindow";
 			label = "%title:0:60:...%";
@@ -151,7 +151,7 @@ let modifier = "Mod4"; in {
 	};
 
 	xsession.windowManager.i3.config.startup = [
-	  {
+	 {
 			command = "xrandr --output HDMI-A-0 --mode 1920x1080";
 			notification = false;
 			always = true;
@@ -176,5 +176,5 @@ let modifier = "Mod4"; in {
 	xsession.windowManager.i3.extraConfig = ''
 		default_floating_border pixel 0
 		default_border pixel 0
-		'';
+	'';
 }
