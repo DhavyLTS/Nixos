@@ -1,6 +1,6 @@
-{ ... } : {
+{ vars, ...} : {
 	networking.networkmanager.enable = true;
-	networking.hostName = "tsugumori";
+	networking.hostName = "${vars.hostname}";
 
 	networking.firewall.enable = true;
 	networking.nat.enable = true;
