@@ -1,8 +1,10 @@
 { pkgs, vars, ... } : {
 	imports = [
-		./core/network.nix ./core/display.nix
-		./core/audio.nix ./core/users.nix
-		./windows/${vars.flavor}.nix
+		./wm/${vars.flavor}.nix
+		./core/network.nix
+		./core/display.nix
+		./core/audio.nix
+		./core/users.nix
 		./hardware.nix
 	];
 
@@ -31,5 +33,4 @@
 
 	boot.loader.efi.canTouchEfiVariables = true;
 	boot.loader.systemd-boot.enable = true;
-
 }
