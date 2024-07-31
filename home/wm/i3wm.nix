@@ -133,6 +133,7 @@ let modifier = "Mod4"; in {
 		"${modifier}+8" = "workspace number 8";
 		"${modifier}+9" = "workspace number 9";
 		"${modifier}+0" = "workspace number 10";
+		"${modifier}+apostrophe" = "workspace number 0";
 
 		"${modifier}+Shift+1" = "move container to workspace number 1";
 		"${modifier}+Shift+2" = "move container to workspace number 2";
@@ -144,10 +145,14 @@ let modifier = "Mod4"; in {
 		"${modifier}+Shift+8" = "move container to workspace number 8";
 		"${modifier}+shift+9" = "move container to workspace number 9";
 		"${modifier}+Shift+0" = "move container to workspace number 10";
+		"${modifier}+Shift+apostrophe" = "move container to workspace number 0";
 
 		"${modifier}+Shift+space" = "floating toggle";
 		"${modifier}+f" = "fullscreen toggle";
+		"${modifier}+Shift+r" = "restart";
+		"${modifier}+Shift+c" = "reload";
 		"${modifier}+Shift+x" = "kill";
+		
 	};
 
 	xsession.windowManager.i3.config.startup = [
@@ -174,6 +179,10 @@ let modifier = "Mod4"; in {
 	];
 
 	xsession.windowManager.i3.extraConfig = ''
+		for_window [class="steam_app*"] move container to workspace number 0
+		for_window [class="awakened-poe-trade"] move container to workspace number 0
+		for_window [class="awakened-poe-trade"] floating
+
 		default_floating_border pixel 0
 		default_border pixel 0
 	'';
