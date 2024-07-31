@@ -14,10 +14,17 @@
 		history.path = "${config.xdg.dataHome}/.zsh/history";
 		history.size = 10000;
 
-		oh-my-zsh.plugins = [ "git" ];
+		oh-my-zsh.plugins = [ "git" "fzf" ];
 		oh-my-zsh.enable = true;
 
 	};
+
+	programs.fzf.enable = true;
+	programs.fzf.enableZshIntegration = true;
+
+	programs.zoxide.enable = true;
+	programs.zoxide.enableZshIntegration = true;
+	programs.zoxide.options = [ "--cmd=cd" ];
 
 	programs.starship.enableZshIntegration = true;
 	programs.starship.enable = true;
