@@ -1,4 +1,12 @@
 { pkgs, config, vars, ... } : {
+
+	programs.git.enable = true;
+	programs.git.userName = "DhavySantos";
+	programs.git.userEmail = "dhavy.s@proton.me";
+	programs.git.extraConfig = {
+		init.defaultBranch = "main";
+	};
+
 	programs.zsh = {
 		syntaxHighlighting.enable = true;
 		autosuggestion.enable = true;
@@ -25,8 +33,8 @@
 	programs.fzf.enableZshIntegration = true;
 
 	programs.zoxide.enable = true;
-	programs.zoxide.enableZshIntegration = true;
 	programs.zoxide.options = [ "--cmd=cd" ];
+	programs.zoxide.enableZshIntegration = true;
 
 	programs.starship.enableZshIntegration = true;
 	programs.starship.enable = true;
