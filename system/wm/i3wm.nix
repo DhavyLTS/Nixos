@@ -2,10 +2,10 @@
 
 	services.xserver.windowManager.i3.package = pkgs.i3-gaps;
 	services.xserver.windowManager.i3.enable = true;
-	services.displayManager.sddm.enable = true;
 
 	services.xserver.desktopManager.xterm.enable = false;
 	services.displayManager.defaultSession = "none+i3";
+  services.displayManager.sddm.enable = true;
 
 	environment.pathsToLink = [ "/libexec" ];
 
