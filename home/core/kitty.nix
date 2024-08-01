@@ -1,13 +1,14 @@
-{ pkgs, lib, inputs,... } : {
+{ pkgs, lib, ... } : {
 	programs.kitty = {
 		shellIntegration.enableZshIntegration = true;
 		font.name = lib.mkForce "CaskaydiaCove Nerd Font";
-		font.package = lib.mkForce inputs.dpkgs.caskaydiacove;
+		font.package = lib.mkForce (import ../fonts/caskaydiacove.nix { inherit pkgs; });
 		font.size = lib.mkForce 12;
 		enable = true;
 		settings = {
 			"confirm_os_window_close" = lib.mkForce "0";
-			"background_opacity" = lib.mkForce "0.9";
+			"window_padding_width" = lib.mkForce "10"; 
+			"background_opacity" = lib.mkForce "1.0";
 			"background_blur" = lib.mkForce "10";
 			"shell" = "zsh";
 		};
