@@ -3,19 +3,22 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
-	device = "/dev/disk/by-uuid/528031a3-d05b-4491-bb1b-7a56846bce07";
-	fsType = "ext4";
-  };
+	boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
+  boot.kernelModules = [ "kvm-intel" "v4l2loopback" ];
+  boot.extraModprobeConfig = ''
+    options v4l2loopback devices=1 video_nr=1 card_label="DroidCam" exclusive_caps=1
+  '';
+	fileSystems."/" = {
+		device = "/dev/disk/by-uuid/528031a3-d05b-4491-bb1b-7a56846bce07";
+		fsType = "ext4";
+	};
 
-  fileSystems."/boot" = {
-	options = [ "fmask=0022" "dmask=0022" ];
-	device = "/dev/disk/by-uuid/FE44-5521";
-	fsType = "vfat";
-  };
+	fileSystems."/boot" = {
+		options = [ "fmask=0022" "dmask=0022" ];
+		device = "/dev/disk/by-uuid/FE44-5521";
+		fsType = "vfat";
+	};
 
   swapDevices = [ ];
 
