@@ -4,17 +4,20 @@
   inputs = {
 		homeManager.url = "github:nix-community/home-manager/master";
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-		neovim.url = "github:DhavySantos/NixVim";
-		dpkgs.url = "github:DhavySantos/NixPkgs";
 		xremap.url = "github:xremap/nix-flake";
 		stylix.url = "github:danth/stylix";
-  };
+		neovim-config = {
+			url = "github:dhavysantos/neovim";
+			flake = false;
+		};
+	};
 
-  outputs = { self, nixpkgs, homeManager, neovim, ... } @inputs :
+  outputs = { self, nixpkgs, homeManager,... } @inputs :
 
 	let
-		vars.colors_scheme = "gruvbox-dark-medium";
 		vars.timezone = "America/Sao_Paulo";
+		vars.flake_path = "~/git/nixos";
+		vars.colors_scheme = "kanagawa";
 		vars.state_version = "24.11";
 		vars.hostname = "tsugumori";
 		vars.username = "tanikaze";
@@ -26,7 +29,6 @@
 		vars.xkb_layout = "br";
 
 		pkgs = nixpkgs.legacyPackages.${system};
-		nvim = neovim.packages.${system}.default;
 		system = "x86_64-linux";
 	in
 
@@ -38,7 +40,7 @@
     };
 
 		homeConfigurations.default = homeManager.lib.homeManagerConfiguration {
-			extraSpecialArgs = { inherit vars; inherit inputs; inherit system; inherit nvim; };
+			extraSpecialArgs = { inherit vars; inherit inputs; };
 			modules = [ ./home/default.nix ];
 			inherit pkgs;
 		};
