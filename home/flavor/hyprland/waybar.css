@@ -1,0 +1,28 @@
+#clock {
+	font-family: CaskaydiaCove Nerd Font;
+	font-weight: bold;
+	font-size: 16px;
+	padding: 0 5px;
+}
+
+#workspaces {
+	font-family: CaskaydiaCove Nerd Font;
+	font-weight: bold;
+	font-size: 12px;
+	padding: 0px 5px;
+}
+
+#workspaces button {
+	border-radius: 0px;
+	padding: 0px 2px;
+}
+
+#window {
+	font-family: CaskaydiaCove Nerd Font;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+#tray {
+	padding: 0 5px;
+}
