@@ -13,7 +13,7 @@
 
 	environment.systemPackages = with pkgs; [
 		wl-clipboard hyprcursor hyprland
-			hyprshot kitty swww wofi
+		hyprshot kitty swww rofi-wayland
 	];
 }
 
