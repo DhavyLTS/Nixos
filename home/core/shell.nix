@@ -1,4 +1,4 @@
-{ pkgs, config, ... } : {
+{ pkgs, config, vars, ... } : {
 	programs.zsh = {
 		syntaxHighlighting.enable = true;
 		autosuggestion.enable = true;
@@ -6,6 +6,8 @@
 		enable = true;
 
 		shellAliases = {
+			home = "nh home switch -c default ${vars.flake_path}";
+			system = "nh os switch -H default ${vars.flake_path}";
 			vim = "${pkgs.neovim}/bin/nvim";
 			vi = "${pkgs.neovim}/bin/nvim";
 			ls = "${pkgs.eza}/bin/eza";
@@ -29,11 +31,11 @@
 	programs.starship.enableZshIntegration = true;
 	programs.starship.enable = true;
 	programs.starship.settings = {
-		format = " $os$directory$git_branch$package$rust$fill \n $character";
+		format = "$os$directory$git_branch$package$rust$fill\n $character";
 		add_newline = true;
 
-		character.success_symbol = " [󱞩](bold green)";
-		character.error_symbol = " [󱞩](bold red)";
+		character.success_symbol = "[󱞩](bold green)";
+		character.error_symbol = "[󱞩](bold red)";
 
 		fill.symbol = " ";
 
