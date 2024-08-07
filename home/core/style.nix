@@ -6,6 +6,8 @@
 		recursive = true;
 	};
 
+	stylix.targets.neovim.enable = false;
+
 	stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/${vars.colors_scheme}.yaml";
 	stylix.cursor.package = pkgs.apple-cursor;
 	stylix.cursor.name = "macOS-BigSur-White";
