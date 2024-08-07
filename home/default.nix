@@ -1,9 +1,7 @@
 { pkgs, vars, inputs, ... } :
 
 let
-
 	awakened-poe-trade = ( import ./pkgs/awakened-poe-trade.nix { inherit pkgs; } );
-
 in
 
 {
@@ -33,8 +31,9 @@ in
 
 	home.packages = with pkgs; [
 		yazi spotify-tray stremio path-of-building
-		lutris lazygit vesktop deluge-gtk
-		wine winetricks gimp
+		lutris lazygit vesktop deluge-gtk scrcpy
+		wine winetricks gimp vlc unrar spotify
+		google-chrome modrinth-app
 	] ++ [ awakened-poe-trade ];
 
 	home.sessionVariables = {
