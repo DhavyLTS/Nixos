@@ -1,18 +1,5 @@
 { pkgs ? import <nixpkgs> {} } :
 
-let
-
-	desktop = pkgs.makeDesktopItem {
-		name = "Awakened Poe Trade";
-		icon = "awakened-poe-trade";
-		exec = "awakened-poe-trade %U";
-		categories = [ "application" ];
-		desktopName = "Awakened PoE Trade";
-		startupWMClass = "awakened-poe-trade";
-	};
-
-in
-
 pkgs.appimageTools.wrapType2 {
 	name = "awakened-poe-trade";
 	version = "v3.25.101";
