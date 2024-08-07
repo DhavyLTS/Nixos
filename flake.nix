@@ -2,22 +2,19 @@
   description = "NixOS Configuration Flake";
 
   inputs = {
+		neovim-config = { url = "github:dhavysantos/neovim"; flake = false; };
 		homeManager.url = "github:nix-community/home-manager/master";
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 		xremap.url = "github:xremap/nix-flake";
 		stylix.url = "github:danth/stylix";
-		neovim-config = {
-			url = "github:dhavysantos/neovim";
-			flake = false;
-		};
 	};
 
   outputs = { self, nixpkgs, homeManager,... } @inputs :
 
 	let
+		vars.colors_scheme = "gruvbox-dark-medium";
 		vars.timezone = "America/Sao_Paulo";
 		vars.flake_path = "~/git/nixos";
-		vars.colors_scheme = "kanagawa";
 		vars.state_version = "24.11";
 		vars.hostname = "tsugumori";
 		vars.username = "tanikaze";
