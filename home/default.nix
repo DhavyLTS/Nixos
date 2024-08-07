@@ -16,24 +16,15 @@ in
 
 	nixpkgs.config.allowUnfree = true;
 
-	xdg.desktopEntries = {
-		awakened-poe-trade = {
-			name = "Awakened Poe Trade";
-			exec = "awakened-poe-trade";
-			categories = [ "Application" ];
-			terminal = false;
-		};
-	};
-
 	home.homeDirectory = "/home/${vars.username}";
 	home.stateVersion = "${vars.state_version}";
 	home.username = "${vars.username}";
 
 	home.packages = with pkgs; [
-		yazi spotify-tray stremio path-of-building
 		lutris lazygit vesktop deluge-gtk scrcpy
-		wine winetricks gimp vlc unrar spotify
-		google-chrome modrinth-app
+		yazi spotify stremio path-of-building
+		wine winetricks gimp vlc unrar unzip
+		google-chrome modrinth-app pcmanfm
 	] ++ [ awakened-poe-trade ];
 
 	home.sessionVariables = {
@@ -43,7 +34,6 @@ in
 
 	programs = {
 		home-manager.enable = true;
-		firefox.enable = true;
 		lazygit.enable = true;
 		btop.enable = true;
 		yazi.enable = true;
