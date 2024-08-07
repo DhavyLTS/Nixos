@@ -6,6 +6,9 @@
 		recursive = true;
 	};
 
+	gtk.iconTheme.package = (import ../pkgs/gruvbox-plus.nix { inherit pkgs; });
+	gtk.iconTheme.name = "Gruvbox-Plus-Dark";
+
 	stylix.targets.neovim.enable = false;
 
 	stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/${vars.colors_scheme}.yaml";
